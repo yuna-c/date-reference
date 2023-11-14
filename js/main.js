@@ -1,29 +1,34 @@
-const now = new Date();
-const year = now.getFullYear();
-const month = now.getMonth();
-const monthName = ['January', 'February', '	March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const date = now.getDate();
-const day = now.getDay(); //순서가 반환 0: 일요일
-const hour = now.getHours();
-const min = now.getMinutes();
-const sec = now.getSeconds();
-const time = now.getTime();
+//특정 시간구간에 맞게 호출 메서드
+//setTimeout(실행함수, 지연시간) : 일정시간이후에 한번만 호출
+//setInterval(실행함수, 반복인터벌) : 일정시간마다 계속해서 반복호출
 
-console.dir(now);
-console.dir(year);
-console.log(monthName.length, monthName[10]); //월의 값이 아닌 순서값 [0: 1월]
-console.log(time); // 표준시가 지정된 시점으로 부터의 밀리세컨드 값이 반환
+/*
+setTimeout(() => {
+	console.log('5초지난뒤 실행');
+}, 5000);
+*/
+const h1 = document.querySelector('h1');
+const [btnStart, btnStop] = document.querySelectorAll('button');
+//전역변수를 써야되는 경우
+//특정 변수값이 서로다른 함수에서 공유되야될떄
+//전역변수 쓰는 방법
+//코드블록 밖에서 변수선언뒤 null이나 기본 자료값으로 초기화
+//함수안쪽에서 새로 지역변수를 만드는 것이 기존 전역변수를 가져와서 새로운 값만 재할당
+let timer = null;
+let num = 0;
 
-const worldHour = now.getUTCHours();
+timer = setInterval(() => {
+	h1.innerText = num++;
+	console.log('1초마다 반복실행');
+}, 1000);
 
-//특정 나라 표준시 구하는 방법
-//우리나라 시간대를 밀리세컨드로 반환후 - 밀리세컨드 = 시차
+btnStop.addEventListener('click', () => {
+	clearInterval(timer);
+});
 
-//만약 8시간 빠른 독일 시간 구하고 싶으면?
-const timeGerman = time - 1000 * 60 * 60 * 8; //1000 1초
-
-//해당 밀리세컨드 값을 new Date()의 인수로 전달
-//해당 밀리세컨드 시간 값에 시간 인스턴스 값이 수정되서 반환됨
-const nowGerman = new Date(timeGerman);
-console.log('한국시', now);
-console.log('독일시', nowGerman);
+btnStart.addEventListener('click', () => {
+	timer = setInterval(() => {
+		console.log('1초마다 반복실행');
+		h1.innerText = num++;
+	}, 1000);
+});
