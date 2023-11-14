@@ -25,11 +25,16 @@ class Student {
 		//생성자 : 인스턴스
 		this.name = name;
 		this.age = age;
+		//this.school = 'DECODELAB'; //상수값
 		this.school = 'DECODELAB';
 	}
 	//프로토타입에 각 인스턴스들이 공통으로 활용할 함수 등록(메서드)
 	plusAge() {
 		this.age = this.age + 1;
+	}
+
+	renameSchool(txt) {
+		this.school = txt;
 	}
 }
 
@@ -39,5 +44,9 @@ const s2 = new Student('David', 12);
 console.log(s1, s2);
 
 //인스턴스가 생성된 이후 프로토타입의 메서드를 호출해서 일괄적으로 인스턴스의 구조를 변경 가능
-[s1, s2].forEach((el) => el.plusAge());
+[s1, s2].forEach((el) => {
+	el.plusAge();
+	el.renameSchool('강감찬 고등학교');
+});
+// [s1, s2].forEach((el) => el.chageSchool());
 console.log(s1, s2);
