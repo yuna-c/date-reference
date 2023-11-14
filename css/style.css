@@ -17,4 +17,14 @@ li {
 html {
   font-size: 16px; }
 
+p {
+  border: 1px solid #ddd;
+  padding: 80px;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  font-size: 5rem; }
+
 /*# sourceMappingURL=style.css.map */
