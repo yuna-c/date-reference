@@ -14,10 +14,12 @@ const [btnStart, btnStop] = document.querySelectorAll('button');
 //전역변수 쓰는 방법
 //코드블록 밖에서 변수선언뒤 null이나 기본 자료값으로 초기화
 //함수안쪽에서 새로 지역변수를 만드는 것이 기존 전역변수를 가져와서 새로운 값만 재할당
+// 전역변수 : 우주에 떠있는 인공위성 (중계기)
 let timer = null;
 let num = 0;
 
 timer = setInterval(() => {
+	//A지역 변경요청
 	h1.innerText = num++;
 	console.log('1초마다 반복실행');
 }, 1000);
@@ -29,6 +31,7 @@ btnStop.addEventListener('click', () => {
 btnStart.addEventListener('click', () => {
 	timer = setInterval(() => {
 		console.log('1초마다 반복실행');
+		//B지역 변경요청
 		h1.innerText = num++;
 	}, 1000);
 });
